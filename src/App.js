@@ -1,23 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import GameBoard from './GameBoard';
+import React,{useState} from 'react';
 
 function App() {
+  const [theme,setTheme] = useState('light');
+
+  const toggleTheme = () =>{
+    if (theme === 'light'){
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className={`App ${theme}`}>
+      <header>
+        <h1 className={`gameTitle ${theme}`}>Tic-Tac-Toe</h1>
+        <div className={`toggle ${theme}`} onClick={toggleTheme}></div>
       </header>
+      <GameBoard theme={theme}/>
     </div>
   );
 }
